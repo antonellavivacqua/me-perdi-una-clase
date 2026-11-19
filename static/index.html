@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Me perdí una clase</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script defer src="/static/app.js"></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="wrap bar">
+      <span class="brand"><span class="brand-icon" aria-hidden="true">▤</span> Me perdí una clase</span>
+      <span class="demo">Modo demo</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <h1 id="page-title">Ponete al día<br>con tu curso.</h1>
+        <p>Encontrá qué dieron, qué dejaron de tarea y los apuntes que compartieron tus compañeros.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true"><span>✓</span><i></i><i></i><i></i></div>
+    </section>
+
+    <div class="actions">
+      <form class="filters" id="filters" aria-label="Filtrar por curso y fecha">
+        <label>Curso
+          <select id="course" name="curso">
+            <option>4° Computación</option>
+            <option>5° Computación</option>
+            <option selected>6° Computación</option>
+          </select>
+        </label>
+        <label>Fecha
+          <input type="date" id="date" name="fecha">
+        </label>
+        <button id="clear-date" type="button" class="text-button" hidden>Ver todas las fechas</button>
+      </form>
+      <div class="actions-buttons">
+        <button class="outline" type="button" id="request-button">Pedir un resumen</button>
+        <button class="primary" type="button" id="share-button"><span aria-hidden="true">＋</span> Compartir resumen</button>
+      </div>
+    </div>
+
+    <p id="feedback" role="status" class="status"></p>
+    <div class="dashboard">
+      <section aria-labelledby="classes-title">
+        <div class="section-heading"><h2 id="classes-title">Resúmenes de clase</h2><span id="count"></span></div>
+        <div id="classes" class="cards"></div>
+      </section>
+      <aside aria-labelledby="requests-title">
+        <div class="section-heading"><h2 id="requests-title">Pedidos pendientes</h2></div>
+        <div id="requests" class="cards"></div>
+      </aside>
+    </div>
+  </main>
+
+  <dialog id="editor" aria-labelledby="editor-title">
+    <form id="entry-form">
+      <div class="dialog-heading">
+        <h2 id="editor-title"></h2>
+        <button class="icon-button" id="close-editor" type="button" aria-label="Cerrar">×</button>
+      </div>
+      <label>Curso
+        <select name="curso">
+          <option>4° Computación</option>
+          <option>5° Computación</option>
+          <option>6° Computación</option>
+        </select>
+      </label>
+      <div class="form-grid">
+        <label>Fecha de la clase <input type="date" name="fecha" required></label>
+        <label>Materia <input name="materia" placeholder="Ej. Redes" maxlength="80" required></label>
+      </div>
+      <div id="summary-fields">
+        <label>Tema <input name="tema" maxlength="160"></label>
+        <label>Tarea <textarea name="tarea" rows="2" maxlength="1000"></textarea></label>
+        <label>Apuntes <textarea name="apuntes" rows="3" maxlength="4000"></textarea></label>
+      </div>
+      <p id="entry-error" role="alert"></p>
+      <div class="actions-buttons dialog-actions">
+        <button type="button" class="outline" id="cancel-editor">Cancelar</button>
+        <button type="submit" class="primary" id="save-entry"></button>
+      </div>
+    </form>
+  </dialog>
+
+  <template id="class-template">
+    <article class="class-card">
+      <div class="meta"><span class="subject"></span><time></time></div>
+      <h3></h3>
+      <dl>
+        <div><dt>Tarea</dt><dd class="homework"></dd></div>
+        <div><dt>Apuntes</dt><dd class="notes"></dd></div>
+      </dl>
+    </article>
+  </template>
+
+  <template id="request-template">
+    <article class="request-card">
+      <time></time>
+      <h3></h3>
+      <button type="button" class="text-button">Responder al pedido <span aria-hidden="true">→</span></button>
+    </article>
+  </template>
+</body>
+</html>
